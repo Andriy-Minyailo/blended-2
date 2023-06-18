@@ -1,6 +1,6 @@
 import { Component } from 'react';
 import { nanoid } from 'nanoid';
-import { Grid, GridItem, SearchForm, EditForm, Text, Todo } from 'components';
+import { Grid, GridItem, SearchForm, EditForm, Todo } from 'components';
 
 export class Todos extends Component {
   state = {
@@ -38,18 +38,46 @@ export class Todos extends Component {
   };
 
   handleEditeTodo = todo => {
-    console.log(todo);
     this.setState({ currentTodo: { ...todo }, isEditing: true });
   };
 
+  handleCancel = () => {
+    this.setState({ currentTodo: {}, isEditing: false });
+  };
+
+  handleInputEditChange = event => {
+    const inputValue = event.currentTarget.value;
+    this.setState({
+      currentTodo: { id: this.state.currentTodo.id, text: inputValue },
+    });
+  };
+
+  // handleAddUpdatedTodo = (id, updatedTodo) => {};
+
+  // handleEditFormUpdate = e => {
+  //   const currentTodo = this.state.currentTodo;
+  //   const todos = this.state.todos;
+
+  //   const newTodos = todos.map(todo =>
+  //     if (todo.id === currentTodo.id) {
+  //       todo.text = currentTodo.text;
+  //     }
+  //   );
+  // };
+
   render() {
-    console.log(this.state.todos);
+    console.log(this.state);
     const { todos, isEditing, currentTodo } = this.state;
 
     return (
       <>
         {isEditing ? (
-          <EditForm currentTodo={currentTodo} />
+          <EditForm
+            currentTodo={currentTodo}
+            onCancel={this.handleCancel}
+            onChange={this.handleInputEditChange}
+            onUpdate={this.handleEditFormUpdate}
+          />
         ) : (
           <SearchForm reqvestSearch={this.requestSearch} />
         )}
