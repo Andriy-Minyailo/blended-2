@@ -6,8 +6,8 @@ import { BtnEdit } from './EditForm.styled';
 
 export const EditForm = ({ onUpdate, onCancel, onChange, currentTodo }) => {
   return (
-    <SearchFormStyled>
-      <BtnEdit type="button">
+    <SearchFormStyled onSubmit={onUpdate}>
+      <BtnEdit type="button" onClick={onCancel}>
         <MdOutlineCancel size="16px" color="red" />
       </BtnEdit>
 
@@ -16,6 +16,7 @@ export const EditForm = ({ onUpdate, onCancel, onChange, currentTodo }) => {
       </FormBtn>
 
       <InputSearch
+        onChange={onChange}
         placeholder="EDIT TODO"
         name="edit"
         required

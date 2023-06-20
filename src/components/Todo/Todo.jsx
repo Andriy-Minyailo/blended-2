@@ -3,7 +3,6 @@ import { TodoWrapper, DeleteButton, EditButton } from './Todo.styled';
 import { RiDeleteBinLine, RiEdit2Line } from 'react-icons/ri';
 
 export const Todo = ({ todo, number, deleteTodo, handleEditeTodo }) => {
-  console.log(handleEditeTodo);
   return (
     <TodoWrapper>
       <Text textAlign="center" marginBottom="20px">
