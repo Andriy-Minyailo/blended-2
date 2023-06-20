@@ -52,21 +52,21 @@ export class Todos extends Component {
     });
   };
 
-  // handleAddUpdatedTodo = (id, updatedTodo) => {};
+  handleEditFormUpdate = e => {
+    e.preventDefault();
+    const currentTodo = this.state.currentTodo;
+    const todos = this.state.todos;
 
-  // handleEditFormUpdate = e => {
-  //   const currentTodo = this.state.currentTodo;
-  //   const todos = this.state.todos;
+    const newTodos = todos.map(todo =>
+      todo.id === currentTodo.id
+        ? { id: todo.id, text: currentTodo.text }
+        : todo
+    );
 
-  //   const newTodos = todos.map(todo =>
-  //     if (todo.id === currentTodo.id) {
-  //       todo.text = currentTodo.text;
-  //     }
-  //   );
-  // };
+    this.setState({ todos: newTodos, isEditing: false });
+  };
 
   render() {
-    console.log(this.state);
     const { todos, isEditing, currentTodo } = this.state;
 
     return (
